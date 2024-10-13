@@ -1,10 +1,11 @@
 # Robot Command Center
 
-A simple web interface to send commands to a robot remotely. This project demonstrates how to store commands in a Firebase Realtime Database, which are then read and executed by a robot using **ESP32** and **Micropython**. The project uses **HTML**, **CSS**, and **JavaScript** for the web interface and integrates with Firebase for real-time command storage.
+A simple web interface designed to remotely send commands to a robot. This project allows users to input commands into a web interface, which are then stored in a Firebase Realtime Database. A robot, connected to a separate network, retrieves these commands and executes them in real time. The robot uses an **ESP32** microcontroller running **Micropython**, while the interface is built with **HTML**, **CSS**, and **JavaScript**, with **Firebase** acting as the intermediary for communication.
 
 ## Features
 
 - **Send Commands**: Users can send text commands remotely to control the robot.
+- **Remote Command Execution**: Control the robot from anywhere. The robot and the command interface can be connected to completely different networks.
 - **Command History**: Displays a log of commands sent with success/error statuses.
 - **Firebase Integration**: Commands are stored and retrieved in real-time from Firebase's Realtime Database.
 - **Robot Execution**: A robot with an **ESP32** microcontroller and **Micropython** listens for commands from the database and executes them.
@@ -34,7 +35,7 @@ Follow these instructions to set up the project on your local machine and get th
    - Replace the Firebase configuration object in `script.js` with your Firebase project credentials.
 
 4. Upload the **Micropython** code to the ESP32:
-   - The provided Micropython script (`robot_commands.py`) reads commands from Firebase and controls the robot.
+   - The provided Micropython script (`robot_commander.py`) reads commands from Firebase and controls the robot.
    - Upload this code to your ESP32 using an IDE like **Thonny** or **uPyCraft**.
 
 5. Open the `index.html` file in your web browser to access the web interface.
@@ -83,37 +84,16 @@ To enable real-time command storage, follow these steps to create and configure 
 - `MOVE FORWARD 5`
 - `TURN RIGHT`
 - `LED ON`
-- `STOP`
 
 ### Robot Setup (ESP32 + Micropython)
 
 - **ESP32** is the microcontroller that runs the robot.
-- The **Micropython** script (`robot_commands.py`) listens for commands from Firebase and interprets them to control motors, LEDs, or other components of the robot.
+- The **Micropython** script (`robot_commander.py`) listens for commands from Firebase and interprets them to control motors, LEDs, or other components of the robot.
 - Commands like "MOVE FORWARD 5" or "LED ON" will be executed based on how the robot is programmed.
 
 ## Screenshots
 
-Insert screenshots of your project here to give users a visual representation of the interface.
-
-## Mini-Tutorial: Create a Firebase Realtime Database
-
-Here’s a quick guide on setting up a Firebase Realtime Database:
-
-1. **Go to Firebase Console** and click **Add Project**.
-2. **Name your project**, then click **Create**.
-3. **Enable Realtime Database**: 
-   - Go to the **Database** section, and click **Create Database** under Realtime Database.
-   - Set up the database rules. For testing, you can allow public access by using:
-   ```json
-   {
-     "rules": {
-       ".read": "true",
-       ".write": "true"
-     }
-   }
-   ```
-   - Be sure to update these rules for production environments.
-4. **Add your Firebase config** to your JavaScript code (as shown in the Firebase Setup section above).
+![Insert screenshots of your project here to give users a visual representation of the interface.](https://ivanr3d.com/assets/img/screenshots/screenshot_robot-command-center.png)
 
 ## Contributing
 
